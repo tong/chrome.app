@@ -20,7 +20,7 @@ typedef CreateWindowOptions = {
 
 typedef Bounds = {
 	?top : Int,
-	?left : Int
+	?left : Int,
 	?width : Int,
 	?height : Int,
 }
