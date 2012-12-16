@@ -1,0 +1,11 @@
+
+CHROME-APP
+==========
+Haxe/Javascript type definitions for google chrome apps.
+These types depend on the chrome.extention library: https://github.com/tong/chrome.extension
+
+
+LINKS
+-----
+https://developer.chrome.com/apps
+https://developer.chrome.com/trunk/apps
