@@ -1,5 +1,7 @@
 package chrome;
 
+typedef FileEntry = Dynamic; //TODO not documented
+
 typedef AcceptOption = {
 	?mimeTypes : Array<String>,
 	?extensions : Array<String>,
@@ -13,6 +15,9 @@ typedef ChooseEntryOptions = {
 	?type : String,
 }
 
+/**
+	http://developer.chrome.com/apps/fileSystem.html
+*/
 @:native("chrome.fileSystem")
 extern class FileSystem {
 	static function getDisplayPath( fileentry : FileEntry, cb : String->Void ) : Void;
