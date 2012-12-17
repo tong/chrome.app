@@ -9,8 +9,8 @@ typedef AcceptOption = {
 typedef ChooseEntryOptions = {
 	?acceptsAllTypes : Bool,
 	?accepts : Array<AcceptOption>,
-	?suggestedName : string,
-	?type : string,
+	?suggestedName : String,
+	?type : String,
 }
 
 @:native("chrome.fileSystem")
