@@ -13,5 +13,5 @@ typedef CpuUpdateInfo = {
 
 @:native("chrome.experimental.systemInfo.cpu") extern class Cpu {
 	static function get( cb : CpuInfo->Void ) : Void;
-	static var onUpdated(default,null) : EventDispatcher<CpuUpdateInfo>;
+	static var onUpdated(default,null) : EventDispatcher<CpuUpdateInfo->Void>;
 }

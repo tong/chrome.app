@@ -21,5 +21,5 @@ typedef StorageChangeInfo = {
 
 @:native("chrome.experimental.systemInfo.storage") extern class Storage {
 	static function get( cb : StorageUnitInfo->Void ) : Void;
-	static var onAvailableCapacityChanged(default,null) : EventDispatcher<StorageChangeInfo>;
+	static var onAvailableCapacityChanged(default,null) : EventDispatcher<StorageChangeInfo->Void>;
 }
