@@ -1,6 +1,9 @@
 package chrome;
 
-typedef FileEntry = Dynamic; //TODO not documented
+import js.html.fs.FileEntry;
+
+//typedef FileEntry = Dynamic; //TODO not documented
+// [filesystem,fullPath,name,isDirectory,isFile] 
 
 typedef AcceptOption = {
 	?mimeTypes : Array<String>,
