@@ -1,5 +1,7 @@
 package chrome.experimental.systemInfo;
 
+import chrome.Event;
+
 typedef CpuInfo = {
 	var archName : String;
 	var modelName : String;
@@ -13,5 +15,5 @@ typedef CpuUpdateInfo = {
 
 @:native("chrome.experimental.systemInfo.cpu") extern class Cpu {
 	static function get( cb : CpuInfo->Void ) : Void;
-	static var onUpdated(default,null) : EventDispatcher<CpuUpdateInfo->Void>;
+	static var onUpdated(default,null) : Event<CpuUpdateInfo->Void>;
 }
