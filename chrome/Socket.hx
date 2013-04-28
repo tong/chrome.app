@@ -1,5 +1,7 @@
 package chrome;
 
+import js.html.ArrayBuffer;
+
 /* 
 @:fakeEnum(String)
 enum SocketType {
