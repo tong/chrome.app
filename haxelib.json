@@ -1,0 +1,13 @@
+{
+	"name": "chrome-app",
+	"url": "https://github.com/tong/chrome.app",
+	"license": "Public",
+	"tags": ["javascript","chrome","google","app"],
+	"description": "Type definitions for the google-chrome apps API",
+	"version": "1.25",
+	"releasenote": "Initial release",
+	"contributors": ["tong"],
+	"dependencies": {
+		"chrome-extension": ""
+	}
+}
