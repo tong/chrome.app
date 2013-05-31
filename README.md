@@ -1,9 +1,7 @@
-
 CHROME-APP
 ==========
-Haxe/Javascript type definitions for google chrome-apps (https://developer.chrome.com/apps).
+Haxe/Javascript type definitions for google chrome-apps.  
+https://developer.chrome.com/apps  
 
-Shared types with chrome-extensions are available here: https://github.com/tong/chrome.extension
-Refer to the documentation what's supported and whatsnot.
-https://developer.chrome.com/apps
-https://developer.chrome.com/trunk/apps
+Shared types with chrome-extensions are available here: https://github.com/tong/chrome.extension  
+Refer to the documentation what's supported and whatsnot.  
