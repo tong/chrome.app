@@ -1,5 +1,7 @@
 package chrome;
 
+import js.html.ArrayBuffer;
+
 private typedef ConnectOptions = {
 	var deviceAddress : String;
 	var serviceUuid : String;

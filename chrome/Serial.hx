@@ -1,4 +1,6 @@
-package chrome.experimental;
+package chrome;
+
+import js.html.ArrayBuffer;
 
 private typedef OpenOptions = {
 	var bitrate : Int;

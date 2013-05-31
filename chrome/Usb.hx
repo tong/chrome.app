@@ -1,5 +1,7 @@
 package chrome;
 
+import js.html.ArrayBuffer;
+
 typedef FindDevicesOptions = {
 	var vendorId : Int;
 	var productId : Int;

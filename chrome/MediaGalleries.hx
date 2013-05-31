@@ -1,13 +1,14 @@
-package chrome.experimental;
+package chrome;
 
-@:fakeEnum(String) enum GetMediaFileSystemsInteractivity {
+@:fakeEnum(String)
+enum GetMediaFileSystemsInteractivity {
 	no;
 	yes;
 	if_needed;
 }
 
 typedef MediaFileSystemsDetails = {
-	?interactive : GetMediaFileSystemsInteractivity;
+	?interactive : GetMediaFileSystemsInteractivity
 }
 
 @:native("chrome.mediaGalleries") extern class MediaGalleries {

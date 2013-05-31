@@ -1,21 +1,17 @@
 package chrome.app;
 
 typedef CreateWindowOptions = {
-	?singleton : Bool,
-	?maxHeight : Int,
+	?id : String,
+	?minWidth : Int,
 	?minHeight : Int,
 	?maxWidth : Int,
-	?minWidth : Int,
-	?bounds : Int,
-	//?defaultLeft : Int,
-	//?defaultWidth : Int,
-	//?defaultHeight : Int,
-	//?top : Int,
-	//?height : Int,
-	//?width : Int,
-	?id : String,
-	?hidden : String,
+	?maxHeight : Int,
 	?frame : String,
+	?bounds : Bounds,
+	?transparentBackground : Bool,
+	?hidden : String,
+	?resizable : Bool,
+	?singleton : Bool
 }
 
 typedef Bounds = {
@@ -47,4 +43,10 @@ typedef AppWindow = {
 extern class Window {
 	static function current() : AppWindow;
 	static function create( url : String, ?options : CreateWindowOptions, ?cb : AppWindow->Void ) : Void;
+	var onBoundsChanged : Event<Void->Void>;
+	var onClosed : Event<Void->Void>;
+	var onFullscreened : Event<Void->Void>;
+	var onMaximized : Event<Void->Void>;
+	var onMinimized : Event<Void->Void>;
+	var onRestored : Event<Void->Void>;
 }
