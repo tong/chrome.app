@@ -39,14 +39,13 @@ typedef AppWindow = {
 	function drawAttention() : Void;
 }
 
-@:native("chrome.app.window")
-extern class Window {
+@:native("chrome.app.window") extern class Window {
 	static function current() : AppWindow;
-	static function create( url : String, ?options : CreateWindowOptions, ?cb : AppWindow->Void ) : Void;
-	var onBoundsChanged : Event<Void->Void>;
-	var onClosed : Event<Void->Void>;
-	var onFullscreened : Event<Void->Void>;
-	var onMaximized : Event<Void->Void>;
-	var onMinimized : Event<Void->Void>;
-	var onRestored : Event<Void->Void>;
+	static function create( url : String, ?options : CreateWindowOptions, ?f : AppWindow->Void ) : Void;
+	static var onBoundsChanged : Event<Void->Void>;
+	static var onClosed : Event<Void->Void>;
+	static var onFullscreened : Event<Void->Void>;
+	static var onMaximized : Event<Void->Void>;
+	static var onMinimized : Event<Void->Void>;
+	static var onRestored : Event<Void->Void>;
 }
