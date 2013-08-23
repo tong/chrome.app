@@ -1,4 +1,4 @@
-package chrome.experimental.systemInfo;
+package chrome.system;
 
 typedef DisplayUnitInfo = {
 	var index : Int;
@@ -18,6 +18,6 @@ typedef DisplayUnitInfo = {
 	var id : String;
 }
 
-@:native("chrome.experimental.systemInfo.display") extern class Display {
+@:native("chrome.system.display") extern class Display {
 	static function get( cb : DisplayUnitInfo->Void ) : Void;
 }

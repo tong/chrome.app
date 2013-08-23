@@ -2,29 +2,40 @@ package chrome;
 
 import js.html.fs.FileEntry;
 
-//typedef FileEntry = Dynamic; //TODO not documented
-// [filesystem,fullPath,name,isDirectory,isFile] 
+@:fakeEnum(String) enum AcceptOptionExtension {
+	jpg;
+	gif;
+	crx:
+}
 
 typedef AcceptOption = {
-	?mimeTypes : Array<String>,
-	?extensions : Array<String>,
 	?description : String
+	?mimeTypes : Array<String>,
+	?extensions : Array<AcceptOptionExtension>,
+}
+
+@:fakeEnum(String) enum ChooseEntryOptionsType {
+	openFile;
+	openWritableFile;
+	saveFile:
 }
 
 typedef ChooseEntryOptions = {
-	?acceptsAllTypes : Bool,
-	?accepts : Array<AcceptOption>,
+	?type : ChooseEntryOptionsType,
 	?suggestedName : String,
-	?type : String,
+	?accepts : Array<AcceptOption>,
+	?acceptsAllTypes : Bool,
+	?acceptsMultiple : Bool,
 }
 
-/**
-	http://developer.chrome.com/apps/fileSystem.html
-*/
 @:native("chrome.fileSystem")
 extern class FileSystem {
-	static function getDisplayPath( fileentry : FileEntry, cb : String->Void ) : Void;
-	static function getWritableEntry( fileentry : FileEntry, cb : FileEntry->Void ) : Void;
-	static function isWritableEntry( fileentry : FileEntry, cb : Bool->Void ) : Void;
+	static function getDisplayPath( fileEntry : FileEntry, cb : String->Void ) : Void;
+	static function getWritableEntry( fileEntry : FileEntry, cb : FileEntry->Void ) : Void;
+	static function isWritableEntry( fileEntry : FileEntry, cb : Bool->Void ) : Void;
+	@:overload(function(options:ChooseEntryOptions,cb:Array<FileEntry>->Void):Void{})
 	static function chooseEntry( options : ChooseEntryOptions, cb : FileEntry->Void ) : Void;
+	static function restoreEntry( id : String, cb : FileEntry->Void ) : Void;
+	static function isRestorable( cb : Bool->Void ) : Void;
+	static function retainEntry( fileEntry : FileEntry ) : Void;
 }
