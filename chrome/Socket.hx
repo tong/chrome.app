@@ -53,7 +53,6 @@ typedef NetworkInterface = {
 
 @:native("chrome.socket")
 extern class Socket {
-	//static function create( type : SocketType, ?options : CreateOptions, cb : CreateInfo->Void ) : Void;
 	static function create( type : String, ?options : CreateOptions, cb : CreateInfo->Void ) : Void;
 	static function destroy( socketId : Int ) : Void;
 	static function connect( socketId : Int, address : String, port : Int, cb : Int->Void ) : Void;
