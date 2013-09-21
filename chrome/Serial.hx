@@ -20,10 +20,10 @@ private typedef WriteInfo = {
 }
 
 private typedef ControlSignalOptions = {
-	?cts : Bool,
-	?dcd : Bool,
-	?dtr : Bool,
-	?rts : Bool
+	@:optional var cts : Bool;
+	@:optional var dcd : Bool;
+	@:optional var dtr : Bool;
+	@:optional var rts : Bool;
 }
 
 @:native("chrome.serial") extern class Serial {

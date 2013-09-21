@@ -23,26 +23,26 @@ typedef Device = {
 */
 
 typedef ControlTransferInfo = {
-	index : Int,
-	direction : Int, //Direction,
-	requestType : String, //RequestType,
-	recipient : String, //Recipient,
-	request : Int,
-	value : Int,
-	?length : Int,
-	?data : ArrayBuffer
+	var index : Int;
+	var direction : Int; //Direction,
+	var requestType : String; //RequestType,
+	var recipient : String; //Recipient,
+	var request : Int;
+	var value : Int;
+	@:optional var length : Int;
+	@:optional var data : ArrayBuffer;
 }
 
 typedef TransferResultInfo = {
-	?resultCode : Int,
-	?data : ArrayBuffer
+	@:optional var resultCode : Int;
+	@:optional var data : ArrayBuffer;
 }
 
 typedef GenericTransferInfo = {
-	direction : String,
-	endpoint : Int,
-	?data : ArrayBuffer,
-	?length : Int
+	var direction : String;
+	var endpoint : Int;
+	@:optional var data : ArrayBuffer;
+	@:optional var length : Int;
 }
 
 typedef IsochronousTransferInfo = {

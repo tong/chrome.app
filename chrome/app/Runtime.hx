@@ -5,8 +5,8 @@ typedef Intent = Dynamic; //TODO
 typedef LaunchItem = Dynamic; //TODO
 
 typedef LaunchData = {
-	?items : Array<LaunchItem>,
-	?id : String
+	@:optional var items : Array<LaunchItem>;
+	@:optional var id : String;
 }
 
 typedef IntentResponse = {

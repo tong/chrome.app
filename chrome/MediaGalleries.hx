@@ -8,7 +8,7 @@ enum GetMediaFileSystemsInteractivity {
 }
 
 typedef MediaFileSystemsDetails = {
-	?interactive : GetMediaFileSystemsInteractivity
+	@:optional var interactive : GetMediaFileSystemsInteractivity;
 }
 
 @:native("chrome.mediaGalleries") extern class MediaGalleries {

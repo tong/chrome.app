@@ -5,27 +5,27 @@ import js.html.fs.FileEntry;
 @:fakeEnum(String) enum AcceptOptionExtension {
 	jpg;
 	gif;
-	crx:
+	crx;
 }
 
 typedef AcceptOption = {
-	?description : String
-	?mimeTypes : Array<String>,
-	?extensions : Array<AcceptOptionExtension>,
+	@:optional var description : String;
+	@:optional var mimeTypes : Array<String>;
+	@:optional var extensions : Array<AcceptOptionExtension>;
 }
 
 @:fakeEnum(String) enum ChooseEntryOptionsType {
 	openFile;
 	openWritableFile;
-	saveFile:
+	saveFile;
 }
 
 typedef ChooseEntryOptions = {
-	?type : ChooseEntryOptionsType,
-	?suggestedName : String,
-	?accepts : Array<AcceptOption>,
-	?acceptsAllTypes : Bool,
-	?acceptsMultiple : Bool,
+	@:optional var type : ChooseEntryOptionsType;
+	@:optional var suggestedName : String;
+	@:optional var accepts : Array<AcceptOption>;
+	@:optional var acceptsAllTypes : Bool;
+	@:optional var acceptsMultiple : Bool;
 }
 
 @:native("chrome.fileSystem")

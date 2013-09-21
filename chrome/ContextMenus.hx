@@ -1,15 +1,15 @@
 package chrome;
 
 typedef OnClickData = {
-	menuItemId : Int,
-	?parentMenuItemId : Int,
-	?mediaType : String,
-	?linkUrl : String,
-	?srcUrl : String,
-	pageUrl : String,
-	?frameUrl : String,
-	?selectionText : String,
-	editable : String
+	var menuItemId : Int;
+	@:optional var parentMenuItemId : Int;
+	@:optional var mediaType : String;
+	@:optional var linkUrl : String;
+	@:optional var srcUrl : String;
+	var pageUrl : String;
+	@:optional var frameUrl : String;
+	@:optional var selectionText : String;
+	var editable : String;
 }
 
 @:native("chrome.contextMenus") extern class ContextMenus {
@@ -30,10 +30,7 @@ typedef OnClickData = {
 		?cb : Void->Void
 	) : Int;
 	
-	static function remove(
-		menuItemId : Int,
-		?cb : Void->Void
-	) : Void;
+	static function remove( menuItemId : Int, ?cb : Void->Void ) : Void;
 	
 	static function removeAll( ?cb : Void->Void ) : Void;
 	

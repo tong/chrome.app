@@ -17,8 +17,8 @@ typedef CreateInfo = {
 }
 
 typedef AcceptInfo = {
-	resultCode : Int,
-	?socketId : Int
+	var resultCode : Int;
+	@:optional var socketId : Int;
 }
 
 typedef ReadInfo = {
@@ -38,12 +38,12 @@ typedef RecvFromInfo = {
 }
 
 typedef SocketInfo = {
-	socketType : String, //SocketType,
-	?localPort : Int,
-	?peerAddress : String,
-	?peerPort : Int,
-	?localAddress : String,
-	connected : Bool
+	var socketType : String; //SocketType,
+	@:optional var localPort : Int;
+	@:optional var peerAddress : String;
+	@:optional var peerPort : Int;
+	@:optional var localAddress : String;
+	var connected : Bool;
 }
 
 typedef NetworkInterface = {

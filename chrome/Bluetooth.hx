@@ -40,8 +40,8 @@ private typedef GetServicesOptions = {
 }
 
 private typedef ServiceRecord = {
-	name : String,
-	?uuid : String
+	var name : String;
+	@:optional var uuid : String;
 }
 
 private typedef ReadOptions = {
@@ -49,8 +49,8 @@ private typedef ReadOptions = {
 }
 
 private typedef SetOutOfBandPairingDataOptions = {
-	address : String,
-	?data : OutOfBandPairingData
+	var address : String;
+	@:optional var data : OutOfBandPairingData;
 }
 
 private typedef StartDiscoveryOptions = {
