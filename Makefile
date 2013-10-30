@@ -1,0 +1,26 @@
+
+##
+## chrome-app
+##
+
+PROJECT=chrome-app
+SRC=chrome/*.hx chrome/app/*.hx chrome/system/*.hx
+
+all: haxedoc.xml $(PROJECT).zip
+
+haxedoc.xml: $(SRC)
+	haxe haxedoc.hxml
+
+$(PROJECT).zip: haxedoc.xml $(SRC)
+	zip -r $@ chrome/ extraParams.hxml haxedoc.xml haxelib.json README.md
+
+install: $(PROJECT).zip
+	haxelib install $(PROJECT).zip
+
+uninstall: haxelib
+	haxelib remove $(PROJECT)
+
+clean:
+	rm -f $(PROJECT).zip haxedoc.xml
+
+.PHONY: install uninstall clean
