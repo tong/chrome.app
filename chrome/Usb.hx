@@ -2,6 +2,87 @@ package chrome;
 
 import js.html.ArrayBuffer;
 
+@:fakeEnum(String)
+private enum Direction {
+	//TODO
+	@:native("_in") _in;
+	out;
+}
+
+private typedef Device = {
+	var device : Int;
+	var vendorId : Int;
+	var productId : Int;
+}
+
+private typedef ConnectionHandle = {
+	var handle : Int;
+	var vendorId : Int;
+	var productId : Int;
+}
+
+private typedef GenericTransferInfo = {
+	var direction : Int;
+	var endpoint : Int;
+	@:optional var length : Int;
+	@:optional var data : ArrayBuffer;
+}
+
+private typedef TransferResultInfo = {
+	@:optional var resultCode : Int;
+	@:optional var data : ArrayBuffer;
+}
+
+@:fakeEnum(String)
+private enum Recipient {
+	device;
+//TODO	interface;
+	endpoint;
+	other;
+}
+
+@:fakeEnum(String)
+private enum RequestType {
+	standard;
+	@:native("class") _class;
+	vendor;
+	reserved;
+}
+
+@:require("chrome_app")
+@:native("chrome.usb")
+extern class Usb {
+	static function getDevices( options : {vendorId:Int,productId:Int}, f : Array<Device>->Void ) : Void;
+	static function requestAccess( device : Device, interfaceId : Int, f : Bool->Void ) : Void;
+	static function openDevice( device : Device, f : ConnectionHandle->Void ) : Void;
+	static function findDevices( options : {vendorId:Int,productId:Int,?interfaceId:Int}, f : Array<ConnectionHandle>->Void ) : Void;
+	static function closeDevice( handle : ConnectionHandle, ?f : Void->Void ) : Void;
+	static function listInterfaces( handle : ConnectionHandle, f : Array<Dynamic>->Void ) : Void; //TODO
+	static function claimInterface( handle : ConnectionHandle, interfaceNumber : Int, f : Void->Void ) : Void;
+	static function releaseInterface( handle : ConnectionHandle, interfaceNumber : Int, f : Void->Void ) : Void;
+	static function setInterfaceAlternateSetting( handle : ConnectionHandle, interfaceNumber : Int, alternateSetting : Int, f : Void->Void ) : Void;
+	static function controlTransfer(
+		handle : ConnectionHandle,
+		transferInfo : {
+			direction : Direction,
+			recipient : Recipient,
+			requestType : RequestType,
+			request : Int,
+			value : Int,
+			index : Int,
+			?length : Int,
+			?data : ArrayBuffer
+		},
+		f : TransferResultInfo->Void
+	) : Void;
+
+
+
+}
+
+/*
+import js.html.ArrayBuffer;
+
 typedef FindDevicesOptions = {
 	var vendorId : Int;
 	var productId : Int;
@@ -20,7 +101,7 @@ typedef Device = {
 	endpoint;
 	other;
 }
-*/
+* /
 
 typedef ControlTransferInfo = {
 	var index : Int;
@@ -65,3 +146,5 @@ typedef IsochronousTransferInfo = {
 	
 	//static var onEvent(default,null) : Event<UsbEvent->Void>;
 }
+*/
+
