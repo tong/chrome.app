@@ -2,12 +2,12 @@
 	"name": "chrome-app",
 	"url": "https://github.com/tong/chrome.app",
 	"license": "Public",
-	"tags": ["javascript","js","chrome","chromium","chromeos","google","app","usb","serial","bluetooth","web","browser"],
-	"description": "Type definitions for the google-chrome apps API",
-	"version": "1.28",
-	"releasenote": "Initial release",
+	"tags": ["javascript","js","chrome","chromium","chrome-os","google","app","usb","serial","bluetooth","web","browser"],
+	"description": "Google chrome packaged apps type definitions",
+	"version": "1.30",
+	"releasenote": "See CHANGES",
 	"contributors": ["tong"],
 	"dependencies": {
-		"chrome-extension": "1.28"
+		"chrome-extension": "1.30"
 	}
 }
