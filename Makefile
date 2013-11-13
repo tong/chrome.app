@@ -24,3 +24,4 @@ clean:
 	rm -f $(PROJECT).zip haxedoc.xml
 
 .PHONY: install uninstall clean
+	
