@@ -2,51 +2,90 @@ package chrome;
 
 import js.html.ArrayBuffer;
 
-@:fakeEnum(String)
-private enum Direction {
-	//TODO
-	@:native("_in") _in;
-	out;
-}
-
-private typedef Device = {
+typedef Device = {
 	var device : Int;
 	var vendorId : Int;
 	var productId : Int;
 }
 
-private typedef ConnectionHandle = {
+typedef ConnectionHandle = {
 	var handle : Int;
 	var vendorId : Int;
 	var productId : Int;
 }
 
-private typedef GenericTransferInfo = {
-	var direction : Int;
+typedef GenericTransferInfo = {
+	var direction : Dynamic;
 	var endpoint : Int;
 	@:optional var length : Int;
 	@:optional var data : ArrayBuffer;
 }
 
-private typedef TransferResultInfo = {
-	@:optional var resultCode : Int;
-	@:optional var data : ArrayBuffer;
+@:fakeEnum(String) enum EndpointType {
+	control;
+	interrupt;
+	isochronous;
+	bulk;
 }
 
-@:fakeEnum(String)
-private enum Recipient {
+@:fakeEnum(String) enum Direction {
+	@:native("in") _in;
+	out;
+}
+
+@:fakeEnum(String) enum Usage {
+	data;
+	feedback;
+	explicitFeedback;
+}
+
+typedef Endpoint = {
+	var address : Int;
+	var type : EndpointType;
+	var direction : Direction;
+	var maximumPacketSize : Int;
+	var synchronization : Int;
+	@:optional var usage : Usage;
+	@:optional var pollingInterval : Int;
+}
+
+typedef Descriptor = {
+	var interfaceNumber : Int;
+	var alternateSetting : Int;
+	var interfaceClass : Int;
+	var interfaceSubclass : Int;
+	var interfaceProtocol : Int;
+	@:optional var description : String;
+	var endpoints : Array<Dynamic>;
+}
+
+@:fakeEnum(String) enum Recipient {
 	device;
-//TODO	interface;
+	@:native("interface") _interface;
 	endpoint;
 	other;
 }
 
-@:fakeEnum(String)
-private enum RequestType {
+@:fakeEnum(String) enum RequestType {
 	standard;
 	@:native("class") _class;
 	vendor;
 	reserved;
+}
+
+typedef TransferInfo = {
+	var direction : Direction;
+	var recipient : Recipient;
+	var requestType : RequestType;
+	var request : Int;
+	var index : Int;
+	@:optional var length : Int;
+	@:optional var data : ArrayBuffer;
+}
+
+typedef TransferResultInfo = {
+	@:optional var resultCode : Int;
+	@:optional var recipient : ArrayBuffer;
 }
 
 @:require("chrome_app")
@@ -57,94 +96,12 @@ extern class Usb {
 	static function openDevice( device : Device, f : ConnectionHandle->Void ) : Void;
 	static function findDevices( options : {vendorId:Int,productId:Int,?interfaceId:Int}, f : Array<ConnectionHandle>->Void ) : Void;
 	static function closeDevice( handle : ConnectionHandle, ?f : Void->Void ) : Void;
-	static function listInterfaces( handle : ConnectionHandle, f : Array<Dynamic>->Void ) : Void; //TODO
+	static function listInterfaces( handle : ConnectionHandle, f : Array<Descriptor>->Void ) : Void;
 	static function claimInterface( handle : ConnectionHandle, interfaceNumber : Int, f : Void->Void ) : Void;
 	static function releaseInterface( handle : ConnectionHandle, interfaceNumber : Int, f : Void->Void ) : Void;
 	static function setInterfaceAlternateSetting( handle : ConnectionHandle, interfaceNumber : Int, alternateSetting : Int, f : Void->Void ) : Void;
-	static function controlTransfer(
-		handle : ConnectionHandle,
-		transferInfo : {
-			direction : Direction,
-			recipient : Recipient,
-			requestType : RequestType,
-			request : Int,
-			value : Int,
-			index : Int,
-			?length : Int,
-			?data : ArrayBuffer
-		},
-		f : TransferResultInfo->Void
-	) : Void;
-
-
-
+	static function controlTransfer( handle : ConnectionHandle, transferInfo : TransferInfo, f : TransferResultInfo->Void ) : Void;
+	static function bulkTransfer( handle : ConnectionHandle, transferInfo : TransferInfo, f : TransferResultInfo->Void ) : Void;
+	static function isochronousTransfer( handle : ConnectionHandle, transferInfo : {transferInfo:GenericTransferInfo,packets:Int,packetLength:Int}, f : TransferResultInfo->Void ) : Void;
+	static function resetDevice( handle : ConnectionHandle, f : Bool->Void ) : Void;
 }
-
-/*
-import js.html.ArrayBuffer;
-
-typedef FindDevicesOptions = {
-	var vendorId : Int;
-	var productId : Int;
-}
-
-typedef Device = {
-	var vendorId : Int;
-	var productId : Int;
-	var handle : Int;
-}
-
-/*
-@:fakeEnum(String) enum Recipient {
-	device;
-	interface;
-	endpoint;
-	other;
-}
-* /
-
-typedef ControlTransferInfo = {
-	var index : Int;
-	var direction : Int; //Direction,
-	var requestType : String; //RequestType,
-	var recipient : String; //Recipient,
-	var request : Int;
-	var value : Int;
-	@:optional var length : Int;
-	@:optional var data : ArrayBuffer;
-}
-
-typedef TransferResultInfo = {
-	@:optional var resultCode : Int;
-	@:optional var data : ArrayBuffer;
-}
-
-typedef GenericTransferInfo = {
-	var direction : String;
-	var endpoint : Int;
-	@:optional var data : ArrayBuffer;
-	@:optional var length : Int;
-}
-
-typedef IsochronousTransferInfo = {
-	var packetLength : Int;
-	var transferInfo : GenericTransferInfo;
-	var packets : Int;
-}
-
-@:native("chrome.usb") extern class Usb {
-
-	static function findDevices( options : FindDevicesOptions, cb : Array<Device>->Void ) : Void;
-	static function closeDevice( device : Device, cb : Void->Void ) : Void;
-	static function claimInterface( device : Device, interfaceNumber : Int, cb : Void->Void ) : Void;
-	static function releaseInterface( device : Device, interfaceNumber : Int, cb : Void->Void ) : Void;
-	static function setInterfaceAlternateSetting( device : Device, interfaceNumber : Int, alternateSetting : Int, cb : Void->Void ) : Void;
-	static function controlTransfer( device : Device, transferInfo : ControlTransferInfo, cb : TransferResultInfo->Void ) : Void;
-	static function bulkTransfer( device : Device, transferInfo : GenericTransferInfo, ?cb : TransferResultInfo->Void ) : Void;
-	static function interruptTransfer( device : Device, transferInfo : GenericTransferInfo, ?cb : TransferResultInfo->Void ) : Void;
-	static function isochronousTransfer( device : Device, transferInfo : IsochronousTransferInfo, ?cb : TransferResultInfo->Void ) : Void;
-	
-	//static var onEvent(default,null) : Event<UsbEvent->Void>;
-}
-*/
-

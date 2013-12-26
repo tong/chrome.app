@@ -2,35 +2,26 @@ package chrome;
 
 import js.html.ArrayBuffer;
 
-/* 
-@:fakeEnum(String)
-enum SocketType {
+@:fakeEnum(String) enum SocketType {
 	tcp;
 	udp;
 }
-*/
 
-typedef CreateOptions = Dynamic; // TODO
-
-typedef CreateInfo = {
-	var socketId : Int;
-}
-
-typedef AcceptInfo = {
+typedef SocketAcceptInfo = {
 	var resultCode : Int;
 	@:optional var socketId : Int;
 }
 
-typedef ReadInfo = {
-	resultCode : Int,
-	data : ArrayBuffer
+typedef SocketReadInfo = {
+	var resultCode : Int;
+	var data : ArrayBuffer;
 }
 
-typedef WriteInfo = {
+typedef SocketWriteInfo = {
 	var bytesWritten : Int;
 }
 
-typedef RecvFromInfo = {
+typedef SocketRecvFromInfo = {
 	resultCode : Int,
 	data : ArrayBuffer,
 	port : Int,
@@ -51,21 +42,27 @@ typedef NetworkInterface = {
 	var address : String;
 }
 
+@:require(chrome_app)
 @:native("chrome.socket")
 extern class Socket {
-	static function create( type : String, ?options : CreateOptions, cb : CreateInfo->Void ) : Void;
+	static function create( type : Type, ?options : Dynamic, f : {socketId:Int}->Void ) : Void;
 	static function destroy( socketId : Int ) : Void;
-	static function connect( socketId : Int, address : String, port : Int, cb : Int->Void ) : Void;
-	static function bind( socketId : Int, address : String, port : Int, cb : Int->Void ) : Void;
+	static function connect( socketId : Int, hostname : String, port : Int, f : Int->Void ) : Void;
+	static function bind( socketId : Int, address : String, port : Int, f : Int->Void ) : Void;
 	static function disconnect( socketId : Int ) : Void;
-	static function read( socketId : Int, ?bufferSize : Int, cb : ReadInfo->Void ) : Void;
-	static function write( socketId : Int, data : ArrayBuffer, cb : WriteInfo->Void ) : Void;
-	static function recvFrom( socketId : Int, ?bufferSize : Int, cb : RecvFromInfo->Void ) : Void;
-	static function sendTo( socketId : Int, data : ArrayBuffer, address : String, port : Int, cb : WriteInfo->Void ) : Void;
-	static function listen( socketId : Int, address : String, port : Int, ?backlog : Int, cb : Int->Void ) : Void;
-	static function accept( socketId : Int, cb : AcceptInfo->Void ) : Void;
-	static function setKeepAlive( socketId : Int, enable : Bool, ?delay : Int, cb : Bool->Void ) : Void;
-	static function setNoDelay( socketId : Int, noDelay : Bool, cb : Bool->Void ) : Void;
-	static function getInfo( socketId : Int, cb : SocketInfo->Void ) : Void;
-	static function getNetworkList( cb : Array<NetworkInterface>->Void ) : Void;
+	static function read( socketId : Int, ?bufferSize : Int, f : SocketReadInfo->Void ) : Void;
+	static function write( socketId : Int, data : ArrayBuffer, f : SocketWriteInfo->Void ) : Void;
+	static function recvFrom( socketId : Int, ?bufferSize : Int, f : SocketRecvFromInfo->Void ) : Void;
+	static function sendTo( socketId : Int, data : ArrayBuffer, address : String, port : Int, f : SocketWriteInfo->Void ) : Void;
+	static function listen( socketId : Int, address : String, port : Int, ?backlog : Int, f : Int->Void ) : Void;
+	static function accept( socketId : Int, f : SocketAcceptInfo->Void ) : Void;
+	static function setKeepAlive( socketId : Int, enable : Bool, ?delay : Int, f : Bool->Void ) : Void;
+	static function setNoDelay( socketId : Int, noDelay : Bool, f : Bool->Void ) : Void;
+	static function getInfo( socketId : Int, f : SocketInfo->Void ) : Void;
+	static function getNetworkList( f : Array<NetworkInterface>->Void ) : Void;
+	static function joinGroup( socketId : Int, address : String, f : Int->Void ) : Void;
+	static function leaveGroup( socketId : Int, address : String, f : Int->Void ) : Void;
+	static function setMulticastTimeToLive( socketId : Int, ttl : Int, f : Int->Void ) : Void;
+	static function setMulticastLoopbackMode( socketId : Int, enabled : Bool, f : Int->Void ) : Void;
+	static function getJoinedGroups( socketId : Int, f : Array<String>->Void ) : Void;
 }

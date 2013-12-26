@@ -1,6 +1,7 @@
 -js api.js
 -xml haxedoc.xml
 --no-output
+chrome.Audio
 chrome.Bluetooth
 chrome.ContextMenus
 chrome.Event
@@ -11,3 +12,4 @@ chrome.Serial
 chrome.Socket
 chrome.SyncFileSystem
 chrome.Usb
+chrome.Wallpaper

@@ -12,7 +12,9 @@ typedef OnClickData = {
 	var editable : String;
 }
 
-@:native("chrome.contextMenus") extern class ContextMenus {
+@:require(chrome_app)
+@:native("chrome.contextMenus")
+extern class ContextMenus {
 	
 	static function create( 
 		createProperties : {

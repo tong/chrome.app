@@ -2,30 +2,31 @@ package chrome;
 
 import js.html.ArrayBuffer;
 
-private typedef OpenOptions = {
+typedef OpenOptions = {
 	var bitrate : Int;
 }
 
-private typedef OpenInfo = {
+typedef OpenInfo = {
 	var connectionId : Int;
 }
 
-private typedef ReadInfo = {
+typedef ReadInfo = {
 	var bytesRead : Int;
 	var data : ArrayBuffer;
 }
 
-private typedef WriteInfo = {
+typedef WriteInfo = {
 	var bytesWritten : Int;
 }
 
-private typedef ControlSignalOptions = {
+typedef ControlSignalOptions = {
 	@:optional var cts : Bool;
 	@:optional var dcd : Bool;
 	@:optional var dtr : Bool;
 	@:optional var rts : Bool;
 }
 
+@:require(chrome_app)
 @:native("chrome.serial") extern class Serial {
 	static function getPorts( cb : Array<String>->Void ) : Void;
 	static function open( port : String, ?options : OpenOptions, cb : OpenInfo->Void ) : Void;

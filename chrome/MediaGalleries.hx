@@ -1,7 +1,6 @@
 package chrome;
 
-@:fakeEnum(String)
-enum GetMediaFileSystemsInteractivity {
+@:fakeEnum(String) enum GetMediaFileSystemsInteractivity {
 	no;
 	yes;
 	if_needed;
@@ -11,6 +10,8 @@ typedef MediaFileSystemsDetails = {
 	@:optional var interactive : GetMediaFileSystemsInteractivity;
 }
 
-@:native("chrome.mediaGalleries") extern class MediaGalleries {
+@:require(chrome_app)
+@:native("chrome.mediaGalleries")
+extern class MediaGalleries {
 	static function getMediaFileSystems( ?details : MediaFileSystemsDetails, cb : Array<Dynamic> ) : Void; //TODO optional array of localfilesystem 
 }

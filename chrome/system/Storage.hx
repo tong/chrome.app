@@ -25,7 +25,9 @@ typedef StorageChangeInfo = {
 	failure;
 }
 
-@:native('chrome.system.storage') extern class Storage {
+@:require(chrome_app)
+@:native('chrome.system.storage')
+extern class Storage {
 	static function getInfo( cb : Array<StorageUnitInfo>->Void ) : Void;
 	static function ejectDevice( id : String, cb : StorageEjectResult->Void ) : Void;
 	static var onAttached(default,null) : Event<StorageUnitInfo->Void>;

@@ -5,6 +5,8 @@ typedef MemoryInfo = {
 	var availableCapacity : Float;
 }
 
-@:native("chrome.system.memory") extern class Memory {
+@:require(chrome_app)
+@:native("chrome.system.memory")
+extern class Memory {
 	static function getInfo( cb : MemoryInfo->Void ) : Void;
 }

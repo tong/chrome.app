@@ -28,6 +28,7 @@ typedef ChooseEntryOptions = {
 	@:optional var acceptsMultiple : Bool;
 }
 
+@:require(chrome_app)
 @:native("chrome.fileSystem")
 extern class FileSystem {
 	static function getDisplayPath( fileEntry : FileEntry, cb : String->Void ) : Void;

@@ -13,6 +13,8 @@ typedef CpuUpdateInfo = {
 	var usagePerProcessor : Array<Float>;
 }
 
-@:native("chrome.system.cpu") extern class Cpu {
+@:require(chrome_app)
+@:native("chrome.system.cpu")
+extern class Cpu {
 	static function getInfo( cb : CpuInfo->Void ) : Void;
 }

@@ -15,6 +15,7 @@ typedef IntentResponse = {
 	var success : Bool;
 }
 
+@:require(chrome_app)
 @:native("chrome.app.runtime")
 extern class Runtime {
 	static var onLaunched(default,null) : chrome.Event<LaunchData>;

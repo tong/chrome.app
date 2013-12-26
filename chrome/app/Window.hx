@@ -39,7 +39,9 @@ typedef AppWindow = {
 	function drawAttention() : Void;
 }
 
-@:native("chrome.app.window") extern class Window {
+@:require(chrome_app)
+@:native("chrome.app.window")
+extern class Window {
 	static function current() : AppWindow;
 	static function create( url : String, ?options : CreateWindowOptions, ?f : AppWindow->Void ) : Void;
 	static var onBoundsChanged : Event<Void->Void>;

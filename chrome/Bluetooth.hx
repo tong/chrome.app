@@ -57,6 +57,7 @@ private typedef StartDiscoveryOptions = {
 	var deviceCallback : Device->Int;
 }
 
+@:require(chrome_app)
 @:native("chrome.bluetooth")
 extern class Bluetooth {
 	static function connect( options : ConnectOptions, cb : Socket->Void ) : Void;

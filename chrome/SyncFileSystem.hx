@@ -39,6 +39,7 @@ enum SyncDirection {
 	remote_to_local;
 }
 
+@:require(chrome_app)
 @:native("chrome.syncFileSystem")
 extern class SyncFileSystem {
 	
@@ -49,12 +50,12 @@ extern class SyncFileSystem {
 	static function getFileStatus( fileEntry : FileEntry, f : FileStatus->Void ) : Void;
 	static function getFileStatuses( fileEntry : FileEntry, f : FileStatus->Void ) : Void;
 
-	static var onServiceStatusChanged : Event<{
+	static var onServiceStatusChanged(default,null) : Event<{
 			state : ServiceStatus,
 			description : String
 		}->Void>;
 
-	static var onFileStatusChanged : Event<{
+	static var onFileStatusChanged(default,null) : Event<{
 			fileEntry : FileEntry,
 			status : FileStatus,
 			?action : SyncAction,

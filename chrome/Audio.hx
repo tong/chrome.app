@@ -16,6 +16,7 @@ typedef InputInfo = {
 	var gain : Float;
 }
 
+@:require(chrome_app)
 @:native("chrome.audio")
 extern class Audio {
 	static function getInfo( cb : Array<OutputInfo>->Array<InputInfo>->Void ) : Void;
