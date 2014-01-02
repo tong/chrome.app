@@ -2,10 +2,21 @@ package chrome;
 
 import js.html.ArrayBuffer;
 
-@:fakeEnum(String) enum SocketType {
+//TODO seems haxe-git<3.2 has problems with this
+/*
+}
+//@:fakeEnum(String) enum SocketType {
+@:enum(String)
+enum SocketType {
 	tcp;
 	udp;
 }
+@:enum abstract SocketType(String) {
+	var tcp = 'tcp';
+	var udp = 'udp';
+}
+*/
+typedef SocketType = String;
 
 typedef SocketAcceptInfo = {
 	var resultCode : Int;
@@ -29,7 +40,7 @@ typedef SocketRecvFromInfo = {
 }
 
 typedef SocketInfo = {
-	var socketType : String; //SocketType,
+	var socketType : SocketType;
 	@:optional var localPort : Int;
 	@:optional var peerAddress : String;
 	@:optional var peerPort : Int;
@@ -42,10 +53,11 @@ typedef NetworkInterface = {
 	var address : String;
 }
 
+@:require(chrome)
 @:require(chrome_app)
 @:native("chrome.socket")
 extern class Socket {
-	static function create( type : Type, ?options : Dynamic, f : {socketId:Int}->Void ) : Void;
+	static function create( type : SocketType, ?options : Dynamic, f : {socketId:Int}->Void ) : Void;
 	static function destroy( socketId : Int ) : Void;
 	static function connect( socketId : Int, hostname : String, port : Int, f : Int->Void ) : Void;
 	static function bind( socketId : Int, address : String, port : Int, f : Int->Void ) : Void;
