@@ -2,7 +2,7 @@ package chrome;
 
 import js.html.ArrayBuffer;
 
-private typedef ConnectOptions = {
+typedef SerialConnectOptions = {
 	@:optional var persistent : Bool;
 	@:optional var name : String;
 	@:optional var bufferSize : Int;
@@ -15,7 +15,7 @@ private typedef ConnectOptions = {
 	@:optional var sendTimeout : Int;
 }
 
-private typedef ConnectionInfo = {
+typedef SerialConnectionInfo = {
 	var connectionId : Int;
 	var paused : Bool;
 	var persistent : Bool;
@@ -30,7 +30,7 @@ private typedef ConnectionInfo = {
 	@:optional var ctsFlowControl : Bool;
 }
 
-@:enum(String)
+//@:enum(String)
 private enum Error {
 	disconnected;
 	pending;
@@ -38,12 +38,12 @@ private enum Error {
 	system_error;
 }
 
-private typedef SendInfo = {
+typedef SendInfo = {
 	var bytesSent : Int;
 	var error : Error;
 }
 
-private typedef Signals = {
+typedef Signals = {
 	var dcd : Bool;
 	var cts : Bool;
 	var ri : Bool;
@@ -54,12 +54,12 @@ private typedef Signals = {
 @:native("chrome.serial")
 extern class Serial {
 	static function getDevices( f : Array<{path:String}>->Void ) : Void;
-	static function connect( path : String, ?options : ConnectOptions, f : ConnectionInfo->Void ) : Void;
-	static function update( connectionId : Int, options : ConnectOptions, f : Bool->Void ) : Void;
+	static function connect( path : String, ?options : SerialConnectOptions, f : SerialConnectionInfo->Void ) : Void;
+	static function update( connectionId : Int, options : SerialConnectOptions, f : Bool->Void ) : Void;
 	static function disconnect( connectionId : Int, f : Bool->Void ) : Void;
 	static function setPaused( connectionId : Int, paused : Bool, f : Void->Void ) : Void;
-	static function getInfo( connectionId : Int, f : ConnectionInfo->Void ) : Void;
-	static function getConnections( f : Array<ConnectionInfo>->Void ) : Void;
+	static function getInfo( connectionId : Int, f : SerialConnectionInfo->Void ) : Void;
+	static function getConnections( f : Array<SerialConnectionInfo>->Void ) : Void;
 	static function send( connectionId : Int, data : ArrayBuffer, f : Dynamic->Void ) : Void;
 	static function flush( connectionId : Int, f : Bool->Void ) : Void;
 	static function getControlSignals( connectionId : Int, f : Bool->Void ) : Void;
