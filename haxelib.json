@@ -4,10 +4,10 @@
 	"license": "Public",
 	"tags": ["javascript","js","chrome","chromium","chrome-os","google","app","usb","serial","bluetooth","web","browser","socket","tcp","udp"],
 	"description": "Google chrome packaged apps type definitions",
-	"version": "1.33.0",
+	"version": "1.35.0",
 	"releasenote": "See CHANGES",
 	"contributors": ["tong"],
 	"dependencies": {
-		"chrome-extension": "1.33.0"
+		"chrome-extension": "1.35.0"
 	}
 }

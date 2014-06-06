@@ -67,7 +67,7 @@ typedef Descriptor = {
 	var other = "other";
 }
 
-@:enum abstract RequestType(String) {
+@:enum abstract TransferRequestType(String) {
 	var standard = "standard";
 	var class_ = "class";
 	var vendor = "vendor";
@@ -77,7 +77,7 @@ typedef Descriptor = {
 typedef TransferInfo = {
 	var direction : Direction;
 	var recipient : Recipient;
-	var requestType : RequestType;
+	var requestType : TransferRequestType;
 	var request : Int;
 	var value : Int;
 	var index : Int;

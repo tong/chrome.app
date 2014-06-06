@@ -1,15 +1,6 @@
 -js api.js
 -xml haxedoc.xml
 --no-output
-chrome.Audio
-chrome.Bluetooth
-chrome.ContextMenus
-chrome.Event
-chrome.FileSystem
-chrome.Idle
-chrome.MediaGalleries
-chrome.Serial
-chrome.Socket
-chrome.SyncFileSystem
-chrome.Usb
-chrome.Wallpaper
+--macro include('chrome',true)
+-lib chrome-extension
+-D chrome_app
