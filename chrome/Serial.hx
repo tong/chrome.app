@@ -2,36 +2,36 @@ package chrome;
 
 import js.html.ArrayBuffer;
 
-@:enum abstract SerialDataBits(String) {
+@:enum abstract DataBits(String) {
 	var seven = "seven";
 	var eight = "eight";
 }
 
-@:enum abstract SerialParityBit(String) {
+@:enum abstract ParityBit(String) {
 	var no = "no";
 	var odd = "odd";
 	var even = "even";
 }
 
-@:enum abstract SerialStopBits(String) {
+@:enum abstract StopBits(String) {
 	var one = "one";
 	var two = "two";
 }
 
-typedef SerialConnectionOptions = {
+typedef ConnectionOptions = {
 	@:optional var persistent : Bool;
 	@:optional var name : String;
 	@:optional var bufferSize : Int;
 	@:optional var bitrate : Int;
-	@:optional var dataBits : SerialDataBits;
-	@:optional var parityBit : SerialParityBit;
-	@:optional var stopBits : SerialStopBits;
+	@:optional var dataBits : DataBits;
+	@:optional var parityBit : ParityBit;
+	@:optional var stopBits : StopBits;
 	@:optional var ctsFlowControl : Bool;
 	@:optional var receiveTimeout : Int;
 	@:optional var sendTimeout : Int;
 }
 
-typedef SerialConnectionInfo = {
+typedef ConnectionInfo = {
 	var connectionId : Int;
 	var paused : Bool;
 	var persistent : Bool;
@@ -40,13 +40,13 @@ typedef SerialConnectionInfo = {
 	var receiveTimeout : Int;
 	var sendTimeout : Int;
 	@:optional var bitrate : Int;
-	@:optional var dataBits : SerialDataBits;
-	@:optional var parityBit : SerialParityBit;
-	@:optional var stopBits : SerialStopBits;
+	@:optional var dataBits : DataBits;
+	@:optional var parityBit : ParityBit;
+	@:optional var stopBits : StopBits;
 	@:optional var ctsFlowControl : Bool;
 }
 
-@:enum abstract SerialSendInfo(String) {
+@:enum abstract SendInfo(String) {
 	var disconnected = "disconnected";
 	var pending = "pending";
 	var timeout = "timeout";
@@ -67,21 +67,20 @@ typedef SerialSignals = {
 	var system_error = "system_error";
 }
 
-@:require(chrome)
 @:require(chrome_app)
 @:native("chrome.serial")
 extern class Serial {
 	static function getDevices( f : Array<{path:String,?vendorId:Int,?productId:Int,?displayName:String}>->Void ) : Void;
-	static function connect( path : String, ?options : SerialConnectionOptions, f : SerialConnectionInfo->Void ) : Void;
-	static function update( connectionId : Int, options : SerialConnectionOptions, f : Bool->Void ) : Void;
+	static function connect( path : String, ?options : ConnectionOptions, f : ConnectionInfo->Void ) : Void;
+	static function update( connectionId : Int, options : ConnectionOptions, f : Bool->Void ) : Void;
 	static function disconnect( connectionId : Int, f : Bool->Void ) : Void;
 	static function setPaused( connectionId : Int, paused : Bool, f : Void->Void ) : Void;
-	static function getInfo( connectionId : Int, f : SerialConnectionInfo->Void ) : Void;
-	static function getConnections( f : Array<SerialConnectionInfo>->Void ) : Void;
-	static function send( connectionId : Int, data : ArrayBuffer, f : SerialSendInfo->Void ) : Void;
+	static function getInfo( connectionId : Int, f : ConnectionInfo->Void ) : Void;
+	static function getConnections( f : Array<ConnectionInfo>->Void ) : Void;
+	static function send( connectionId : Int, data : ArrayBuffer, f : SendInfo->Void ) : Void;
 	static function flush( connectionId : Int, f : Bool->Void ) : Void;
 	static function getControlSignals( connectionId : Int, f : SerialSignals->Void ) : Void;
 	static function setControlSignals( connectionId : Int, signals : {?dtr:Bool,?rts:Bool}, f : Bool->Void ) : Void;
-	static var onReceive : Event<{connectionId:Int,data:ArrayBuffer}->Void>;
+	static var onReceive : Event<Int->ArrayBuffer->Void>;
 	static var onReceiveError : Event<{connectionId:Int,error:SerialError}->Void>;
 }

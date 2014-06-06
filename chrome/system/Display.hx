@@ -7,7 +7,6 @@ typedef Bounds = {
 	var height : Int;
 }
 
-
 typedef Insets = {
 	var left : Int;
 	var top : Int;
@@ -15,7 +14,7 @@ typedef Insets = {
 	var bottom : Int;
 }
 
-typedef DisplayUnitInfo = {
+typedef DisplayInfo = {
 	var id : String;
 	var name : String;
 	var mirroringSourceId : String;
@@ -42,7 +41,7 @@ typedef DisplayPropertiesInfo = {
 @:require(chrome_app)
 @:native("chrome.system.display")
 extern class Display {
-	static function getInfo( f : Array<DisplayUnitInfo>->Void ) : Void;
-	static function setDisplayProperties( id : String, info : DisplayPropertiesInfo, ?f : Array<DisplayUnitInfo>->Void ) : Void;
+	static function getInfo( f : Array<DisplayInfo>->Void ) : Void;
+	static function setDisplayProperties( id : String, info : DisplayPropertiesInfo, ?f : Void->Void ) : Void;
 	static var onDisplayChanged(default,null) : Event<Void->Void>;
 }

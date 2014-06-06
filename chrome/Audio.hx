@@ -17,10 +17,11 @@ typedef InputInfo = {
 }
 
 @:require(chrome_app)
+@:require(chrome_dev)
 @:native("chrome.audio")
 extern class Audio {
-	static function getInfo( cb : Array<OutputInfo>->Array<InputInfo>->Void ) : Void;
-	static function setActiveDevices( ids : Array<String>, cb : Void->Void ) : Void;
-	static function setProperties( id : String, properties : {isMuted:Bool,?volume:Float,?gain:Float}, cb : Void->Void ) : Void;
+	static function getInfo( f : Array<OutputInfo>->Array<InputInfo>->Void ) : Void;
+	static function setActiveDevices( ids : Array<String>, f : Void->Void ) : Void;
+	static function setProperties( id : String, properties : {isMuted:Bool,?volume:Float,?gain:Float}, f : Void->Void ) : Void;
 	static var onDeviceChanged : Event<Void->Void>;
 }

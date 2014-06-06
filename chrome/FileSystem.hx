@@ -1,11 +1,12 @@
 package chrome;
 
+import js.html.fs.Entry;
 import js.html.fs.FileEntry;
 
-@:fakeEnum(String) enum AcceptOptionExtension {
-	jpg;
-	gif;
-	crx;
+@:enum abstract AcceptOptionExtension(String) {
+	var jpg = "jpg";
+	var gif = "gif";
+	var crx = "crx";
 }
 
 typedef AcceptOption = {
@@ -14,10 +15,11 @@ typedef AcceptOption = {
 	@:optional var extensions : Array<AcceptOptionExtension>;
 }
 
-@:fakeEnum(String) enum ChooseEntryOptionsType {
-	openFile;
-	openWritableFile;
-	saveFile;
+@:enum abstract ChooseEntryOptionsType(String) {
+	var openFile = "openFile";
+	var openWritableFile = "openWritableFile";
+	var saveFile = "saveFile";
+	var openDirectory = "openDirectory";
 }
 
 typedef ChooseEntryOptions = {
@@ -31,12 +33,12 @@ typedef ChooseEntryOptions = {
 @:require(chrome_app)
 @:native("chrome.fileSystem")
 extern class FileSystem {
-	static function getDisplayPath( fileEntry : FileEntry, cb : String->Void ) : Void;
-	static function getWritableEntry( fileEntry : FileEntry, cb : FileEntry->Void ) : Void;
-	static function isWritableEntry( fileEntry : FileEntry, cb : Bool->Void ) : Void;
-	@:overload(function(options:ChooseEntryOptions,cb:Array<FileEntry>->Void):Void{})
-	static function chooseEntry( options : ChooseEntryOptions, cb : FileEntry->Void ) : Void;
-	static function restoreEntry( id : String, cb : FileEntry->Void ) : Void;
-	static function isRestorable( cb : Bool->Void ) : Void;
-	static function retainEntry( fileEntry : FileEntry ) : Void;
+	static function getDisplayPath( fileEntry : FileEntry, f : String->Void ) : Void;
+	static function getWritableEntry( fileEntry : FileEntry, f : FileEntry->Void ) : Void;
+	static function isWritableEntry( fileEntry : FileEntry, f : Bool->Void ) : Void;
+	@:overload(function(options:ChooseEntryOptions,f:Array<FileEntry>->Void):Void{})
+	static function chooseEntry( ?options : ChooseEntryOptions, ?suggestedName : String, ?accepts : Array<{?description:String,?mimeTypes:Array<String>,?extensions:Array<String>}>, ?acceptsAllTypes : Bool, ?acceptsMultiple : Bool, f : FileEntry->Void ) : Void;
+	static function restoreEntry( id : String, f : FileEntry->Void ) : Void;
+	static function isRestorable( id : String, f : Bool->Void ) : Void;
+	static function retainEntry( entry : Entry ) : Void;
 }

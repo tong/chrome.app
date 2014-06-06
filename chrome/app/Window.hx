@@ -1,37 +1,69 @@
 package chrome.app;
 
-import js.html.DOMWindow;
-
-typedef CreateWindowOptions = {
-	@:optional var id : String;
-	@:optional var defaultWidth : Int;
-	@:optional var defaultHeight : Int;
-	@:optional var defaultLeft : Int;
-	@:optional var defaultTop : Int;
+typedef ContentBounds = {
+	@:optional var top : Int;
+	@:optional var left : Int;
 	@:optional var width : Int;
 	@:optional var height : Int;
+}
+
+typedef BoundsSpecification = {
 	@:optional var left : Int;
 	@:optional var top : Int;
+	@:optional var width : Int;
+	@:optional var height : Int;
 	@:optional var minWidth : Int;
 	@:optional var minHeight : Int;
 	@:optional var maxWidth : Int;
 	@:optional var maxHeight : Int;
-	@:optional var frame : String;
-	@:optional var bounds : Bounds;
+}
+
+typedef Bounds = {
+	var left : Int;
+	var top : Int;
+	var width : Int;
+	var height : Int;
+	@:optional var minWidth : Int;
+	@:optional var minHeight : Int;
+	@:optional var maxWidth : Int;
+	@:optional var maxHeight : Int;
+	function setPosition(left:Int,top:Int) : Void;
+	function setSize(width:Int,height:Int) : Void;
+	function setMinimumSize(minWidth:Int,minHeight:Int) : Void;
+	function setMaximumSize(maxWidth:Int,maxHeight:Int) : Void;
+}
+
+typedef FrameOptions = {
+	@:optional var type : String;
+	@:optional var color : String;
+	@:optional var activeColor : String;
+	@:optional var inactiveColor : String;
+}
+
+@:enum abstract WindowState(String) {
+	var normal = "normal";
+	var fullscreen = "fullscreen";
+	var maximized = "maximized";
+	var minimized = "minimized";
+}
+
+typedef CreateWindowOptions = {
+	@:optional var id : String;
+	@:optional var innerBounds : BoundsSpecification;
+	@:optional var outerBounds : BoundsSpecification;
+	@:optional var minWidth : Int;
+	@:optional var minHeight : Int;
+	@:optional var maxWidth : Int;
+	@:optional var maxHeight : Int;
+	@:optional var frame : FrameOptions;
+	@:optional var bounds : ContentBounds;
 	@:optional var transparentBackground : Bool;
-	@:optional var state : CreateWindowOptionsState;
+	@:optional var state : WindowState;
 	@:optional var hidden : Bool;
 	@:optional var resizable : Bool;
 	@:optional var singleton : Bool;
 	@:optional var alwaysOnTop : Bool;
 	@:optional var focused : Bool;
-}
-
-typedef Bounds = {
-	@:optional var top : Int;
-	@:optional var left : Int;
-	@:optional var width : Int;
-	@:optional var height : Int;
 }
 
 typedef AppWindow = {
@@ -47,22 +79,17 @@ typedef AppWindow = {
 	function resizeTo( width : Int, height : Int ) : Void;
 	function drawAttention() : Void;
 	function clearAttention() : Void;
-	function show( ?focus : Bool ) : Void;
+	function close() : Void;
+	function show( ?focused : Bool ) : Void;
 	function hide() : Void;
-	function getBounds() : Bounds;
-	function setBounds( bounds : Bounds ) : Void;
-	function getMinWidth() : Int;
-	function getMinHeight() : Int;
-	function getMaxWidth() : Int;
-	function getMaxHeight() : Int;
-	function setMinWidth( ?minWidth : Int ) : Void;
-	function setMinHeight( ?minHeight : Int ) : Void;
-	function setMaxWidth( ?maxWidth : Int ) : Void;
-	function setMaxHeight( ?maxHeight : Int ) : Void;
+	//function getBounds() : Bounds;
+	//function setBounds( bounds : Bounds ) : Void;
 	function isAlwaysOnTop() : Bool;
 	function setAlwaysOnTop( alwaysOnTop : Bool ) : Void;
-	var contentWindow : DOMWindow;
+	var contentWindow : Window;
 	var id : Int;
+	var innerBounds : Bounds;
+	var outerBounds : Bounds;
 }
 
 @:require(chrome_app)
@@ -70,7 +97,8 @@ typedef AppWindow = {
 extern class Window {
 	static function create( url : String, ?options : CreateWindowOptions, ?f : AppWindow->Void ) : Void;
 	static function current() : AppWindow;
-	static function current() : AppWindow;
+	static function getAll() : Array<AppWindow>;
+	static function get() : AppWindow;
 	static var onBoundsChanged : Event<Void->Void>;
 	static var onClosed : Event<Void->Void>;
 	static var onFullscreened : Event<Void->Void>;
