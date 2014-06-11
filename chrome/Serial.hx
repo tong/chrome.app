@@ -1,5 +1,6 @@
 package chrome;
 
+import chrome.Event;
 import js.html.ArrayBuffer;
 
 @:enum abstract DataBits(String) {
