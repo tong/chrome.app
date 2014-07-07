@@ -3,6 +3,13 @@ package chrome;
 import chrome.Event;
 import js.html.ArrayBuffer;
 
+typedef DeviceInfo = {
+	var path : String;
+	@:optional var vendorId : Int;
+	@:optional var productId : Int;
+	@:optional var displayName : String;
+}
+
 @:enum abstract DataBits(String) {
 	var seven = "seven";
 	var eight = "eight";
@@ -71,7 +78,7 @@ typedef SerialSignals = {
 @:require(chrome_app)
 @:native("chrome.serial")
 extern class Serial {
-	static function getDevices( f : Array<{path:String,?vendorId:Int,?productId:Int,?displayName:String}>->Void ) : Void;
+	static function getDevices( f : Array<DeviceInfo>->Void ) : Void;
 	static function connect( path : String, ?options : ConnectionOptions, f : ConnectionInfo->Void ) : Void;
 	static function update( connectionId : Int, options : ConnectionOptions, f : Bool->Void ) : Void;
 	static function disconnect( connectionId : Int, f : Bool->Void ) : Void;
