@@ -1,11 +1,11 @@
 package chrome.sockets;
 
-typedef SocketProperties = {
+private typedef SocketProperties = {
 	@:optional var persistent : Bool;
 	@:optional var name : String;
 }
 
-typedef SocketInfo = {
+private typedef SocketInfo = {
 	var socketId : Int;
 	var persistent : Bool;
 	@:optional var name : String;

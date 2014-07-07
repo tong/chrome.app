@@ -2,17 +2,17 @@ package chrome.sockets;
 
 import js.html.ArrayBuffer;
 
-typedef SocketProperties = {
+private typedef SocketProperties = {
 	@:optional var persistent : Bool;
 	@:optional var name : String;
-	@:optional var bufferSize : int;
+	@:optional var bufferSize : Int;
 }
 
-typedef SocketInfo = {
+private typedef SocketInfo = {
 	var socketId : Int;
 	var persistent : Bool;
 	@:optional var name : String;
-	@:optional var bufferSize : int;
+	@:optional var bufferSize : Int;
 	var paused : Bool;
 	@:optional var localAddress : String;
 	@:optional var localPort : Int;

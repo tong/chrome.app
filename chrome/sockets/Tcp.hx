@@ -5,14 +5,14 @@ import js.html.ArrayBuffer;
 typedef SocketProperties = {
 	@:optional var persistent : Bool;
 	@:optional var name : String;
-	@:optional var bufferSize : int;
+	@:optional var bufferSize : Int;
 }
 
 typedef SocketInfo = {
 	var socketId : Int;
 	var persistent : Bool;
 	@:optional var name : String;
-	@:optional var bufferSize : int;
+	@:optional var bufferSize : Int;
 	var paused : Bool;
 	var connected : Bool;
 	@:optional var localAddress : String;
