@@ -60,15 +60,16 @@ private typedef StartDiscoveryOptions = {
 @:require(chrome_app)
 @:native("chrome.bluetooth")
 extern class Bluetooth {
-	static function connect( options : ConnectOptions, cb : Socket->Void ) : Void;
-	static function disconnect( options : DisconnectOptions, ?cb : Void->Void ) : Void;
-	static function getAddress( cb : String->Void ) : Void;
-	static function getDevices( options : GetDevicesOptions, cb : Array<Device>->Void ) : Void;
-	static function getLocalOutOfBandPairingData( cb : OutOfBandPairingData->Void ) : Void;
-	static function getServices( options : GetServicesOptions, cb : Array<ServiceRecord>->Void ) : Void;
-	static function isAvailable( cb : Bool->Void ) : Void;
-	static function isPowered( cb : Bool->Void ) : Void;
-	static function read( options : ReadOptions, cb : ArrayBuffer->Void ) : Void;
-	static function setOutOfBandPairingData( options : SetOutOfBandPairingDataOptions, ?cb : Void->Void ) : Void;
-	static function startDiscovery( options : StartDiscoveryOptions, ?cb : Void->Void ) : Void;
+	static function connect( options : ConnectOptions, f : Socket->Void ) : Void;
+	static function disconnect( options : DisconnectOptions, ?f : Void->Void ) : Void;
+	static function getAddress( f : String->Void ) : Void;
+	//static function getDevices( options : GetDevicesOptions, f : Array<Device>->Void ) : Void;
+	static function getDevices( f : Array<Device>->Void ) : Void;
+	static function getLocalOutOfBandPairingData( f : OutOfBandPairingData->Void ) : Void;
+	static function getServices( options : GetServicesOptions, f : Array<ServiceRecord>->Void ) : Void;
+	static function isAvailable( f : Bool->Void ) : Void;
+	static function isPowered( f : Bool->Void ) : Void;
+	static function read( options : ReadOptions, f : ArrayBuffer->Void ) : Void;
+	static function setOutOfBandPairingData( options : SetOutOfBandPairingDataOptions, ?f : Void->Void ) : Void;
+	static function startDiscovery( options : StartDiscoveryOptions, ?f : Void->Void ) : Void;
 }
