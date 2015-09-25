@@ -42,6 +42,6 @@ typedef LaunchData = {
 @:require(chrome_app)
 @:native("chrome.app.runtime")
 extern class Runtime {
-	static var onLaunched(default,null) : Event<LaunchData>;
+	static var onLaunched(default,null) : Event<LaunchData->Void>;
 	static var onRestarted(default,null) : Event<Void->Void>;
 }
