@@ -1,9 +1,9 @@
-CHROME-APP
-==========
-Haxe/Javascript type definitions for google chrome-apps.  
-https://developer.chrome.com/apps/api_index
 
-API version: 35
+# Chrome-app
+
+Haxe/Javascript type definitions for [google chrome-apps](https://developer.chrome.com/apps/api_index).
+
+API version: 45
 
 This library depends on the chrome-extension type definitions: https://github.com/tong/chrome.extension  
 For using types available on chrome-os only set: -D chrome_os  
