@@ -1,5 +1,7 @@
 package chrome.app;
 
+import chrome.Events;
+
 typedef ContentBounds = {
 	@:optional var top : Int;
 	@:optional var left : Int;
@@ -40,7 +42,7 @@ typedef FrameOptions = {
 	@:optional var inactiveColor : String;
 }
 
-@:enum abstract WindowState(String) {
+@:enum abstract WindowState(String) from String to String {
 	var normal = "normal";
 	var fullscreen = "fullscreen";
 	var maximized = "maximized";
@@ -64,6 +66,7 @@ typedef CreateWindowOptions = {
 	@:optional var singleton : Bool;
 	@:optional var alwaysOnTop : Bool;
 	@:optional var focused : Bool;
+	@:optional var visibleOnAllWorkspaces : Bool;
 }
 
 typedef AppWindow = {
@@ -86,7 +89,7 @@ typedef AppWindow = {
 	//function setBounds( bounds : Bounds ) : Void;
 	function isAlwaysOnTop() : Bool;
 	function setAlwaysOnTop( alwaysOnTop : Bool ) : Void;
-	var contentWindow : Window;
+	var contentWindow : js.html.Window;
 	var id : Int;
 	var innerBounds : Bounds;
 	var outerBounds : Bounds;
