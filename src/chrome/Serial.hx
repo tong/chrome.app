@@ -82,6 +82,6 @@ extern class Serial {
 	static function setControlSignals( connectionId : Int, signals : {?dtr:Bool,?rts:Bool}, callback : Bool->Void ) : Void;
 	static function setBreak( connectionId : Int, callback : Bool->Void ) : Void;
 	static function clearBreak( connectionId : Int, callback : Bool->Void ) : Void;
-	static var onReceive : Event<{connectionId:Int,data:ArrayBuffer}->Void>;
-	static var onReceiveError : Event<{connectionId:Int,error:SerialError}->Void>;
+	static var onReceive(default,null) : Event<{connectionId:Int,data:ArrayBuffer}->Void>;
+	static var onReceiveError(default,null) : Event<{connectionId:Int,error:SerialError}->Void>;
 }
