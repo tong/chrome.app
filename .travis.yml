@@ -1,0 +1,12 @@
+language: haxe
+
+sudo: false
+
+haxe:
+  - "3.2.0"
+  - development
+
+script:
+  - haxelib git chrome-extension https://github.com/tong/chrome.extension
+  - haxelib git dox https://github.com/dpeek/dox
+  - haxe haxedoc.hxml

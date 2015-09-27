@@ -5,6 +5,8 @@ Haxe/Javascript type definitions for [google chrome-apps](https://developer.chro
 
 API version: 45  
 
+[![Build Status](https://travis-ci.org/tong/chrome.app.svg?branch=master)](https://travis-ci.org/tong/chrome.app)
+
 ---
 
 To install from haxelib run:  
