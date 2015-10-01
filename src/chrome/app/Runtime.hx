@@ -25,23 +25,22 @@ private typedef FileEntry = Dynamic; //TODO
 	var test = "test";
 }
 
-typedef LaunchItem = {
-	var entry : FileEntry;
-	var type : String;
-}
-
-typedef LaunchData = {
-	@:optional var id : String;
-	@:optional var items : Array<LaunchItem>;
-	@:optional var url : String;
-	@:optional var referrerUrl : String;
-	@:optional var isKioskSession : Bool;
-	@:optional var source : Source;
-}
-
 @:require(chrome_app)
 @:native("chrome.app.runtime")
 extern class Runtime {
-	static var onLaunched(default,null) : Event<LaunchData->Void>;
+	@:require(chrome_dev)
+	static var onEmbedRequested(default,null) : Event<{
+			?data : Dynamic,
+			allow : String->Void,
+			deny : Void->Void
+		}->Void>;
+	static var onLaunched(default,null) : Event<?{
+			?id : String,
+			?items : Array<{entry:FileEntry,type:String}>,
+			?url : String,
+			?referrerUrl : String,
+			?isKioskSession : Bool,
+			?source : Source
+		}->Void>;
 	static var onRestarted(default,null) : Event<Void->Void>;
 }
