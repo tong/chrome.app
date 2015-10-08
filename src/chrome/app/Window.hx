@@ -1,6 +1,7 @@
 package chrome.app;
 
 import chrome.Events;
+import haxe.extern.EitherType;
 
 typedef ContentBounds = {
 	@:optional var top : Int;
@@ -57,7 +58,7 @@ typedef CreateWindowOptions = {
 	@:optional var minHeight : Int;
 	@:optional var maxWidth : Int;
 	@:optional var maxHeight : Int;
-	@:optional var frame : FrameOptions;
+	@:optional var frame : EitherType<String,FrameOptions>;
 	@:optional var bounds : ContentBounds;
 	@:optional var transparentBackground : Bool;
 	@:optional var state : WindowState;
@@ -78,17 +79,15 @@ typedef AppWindow = {
 	function maximize() : Void;
 	function isMaximized() : Bool;
 	function restore() : Void;
-	function moveTo( left : Int, top : Int ) : Void;
-	function resizeTo( width : Int, height : Int ) : Void;
 	function drawAttention() : Void;
 	function clearAttention() : Void;
 	function close() : Void;
 	function show( ?focused : Bool ) : Void;
 	function hide() : Void;
-	//function getBounds() : Bounds;
-	//function setBounds( bounds : Bounds ) : Void;
 	function isAlwaysOnTop() : Bool;
 	function setAlwaysOnTop( alwaysOnTop : Bool ) : Void;
+	function setVisibleOnAllWorkspaces( alwaysVisible : Bool ) : Void;
+	function setInterceptAllKeys( wantAllKeys : Bool ) : Void;
 	var contentWindow : js.html.Window;
 	var id : Int;
 	var innerBounds : Bounds;
