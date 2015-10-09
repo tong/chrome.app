@@ -50,6 +50,11 @@ typedef FrameOptions = {
 	var minimized = "minimized";
 }
 
+@:enum abstract FrameType(String) from String to String {
+	var none = "none";
+	var chrome = "chrome";
+}
+
 typedef CreateWindowOptions = {
 	@:optional var id : String;
 	@:optional var innerBounds : BoundsSpecification;
@@ -58,7 +63,7 @@ typedef CreateWindowOptions = {
 	@:optional var minHeight : Int;
 	@:optional var maxWidth : Int;
 	@:optional var maxHeight : Int;
-	@:optional var frame : EitherType<String,FrameOptions>;
+	@:optional var frame : EitherType<FrameType,FrameOptions>;
 	@:optional var bounds : ContentBounds;
 	@:optional var transparentBackground : Bool;
 	@:optional var state : WindowState;
@@ -87,6 +92,7 @@ typedef AppWindow = {
 	function isAlwaysOnTop() : Bool;
 	function setAlwaysOnTop( alwaysOnTop : Bool ) : Void;
 	function setVisibleOnAllWorkspaces( alwaysVisible : Bool ) : Void;
+	@:require(chrome_dev)
 	function setInterceptAllKeys( wantAllKeys : Bool ) : Void;
 	var contentWindow : js.html.Window;
 	var id : Int;
