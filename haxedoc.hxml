@@ -2,7 +2,12 @@
 -xml haxedoc.xml
 --no-output
 -cp src
+-D chrome
+-D chrome_app
 -lib chrome-extension
 -D chrome_app
 -dce std
 --macro include('chrome',true)
+
+#--next
+#-cmd haxelib run dox -o doc/ -i ./ -D source-path https://github.com/tong/chrome.app/blob/master/src
