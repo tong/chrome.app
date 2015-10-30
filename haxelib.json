@@ -4,7 +4,7 @@
 	"license": "Public",
 	"tags": ["javascript","js","chrome","chromium","chrome-os","google","app","usb","serial","bluetooth","web","browser","socket","tcp","udp"],
 	"description": "Google chrome packaged apps type definitions",
-	"version": "45.0.2",
+	"version": "46.0.0",
 	"releasenote": "See CHANGES",
 	"contributors": ["tong"],
 	"classPath" : "src/",
