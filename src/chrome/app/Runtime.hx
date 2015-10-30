@@ -29,12 +29,12 @@ private typedef FileEntry = Dynamic; //TODO
 @:native("chrome.app.runtime")
 extern class Runtime {
 	@:require(chrome_dev)
-	static var onEmbedRequested(default,null) : Event<{
+	static var onEmbedRequested(default,never) : Event<{
 			?data : Dynamic,
 			allow : String->Void,
 			deny : Void->Void
 		}->Void>;
-	static var onLaunched(default,null) : Event<?{
+	static var onLaunched(default,never) : Event<?{
 			?id : String,
 			?items : Array<{entry:FileEntry,type:String}>,
 			?url : String,
@@ -42,5 +42,5 @@ extern class Runtime {
 			?isKioskSession : Bool,
 			?source : Source
 		}->Void>;
-	static var onRestarted(default,null) : Event<Void->Void>;
+	static var onRestarted(default,never) : Event<Void->Void>;
 }

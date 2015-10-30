@@ -31,6 +31,6 @@ extern class Hid {
 	static function send( connectionId : Int, reportId : Int, data : ArrayBuffer, callback : Void->Void ) : Void;
 	static function receiveFeatureReport( connectionId : Int, reportId : Int, callback : ArrayBuffer->Void ) : Void;
 	static function sendFeatureReport( connectionId : Int, reportId : Int, data : ArrayBuffer, callback : Void->Void ) : Void;
-	static var onDeviceAdded(default,null) : Event<HidDeviceInfo->Void>;
-	static var onDeviceRemoved(default,null) : Event<Int->Void>;
+	static var onDeviceAdded(default,never) : Event<HidDeviceInfo->Void>;
+	static var onDeviceRemoved(default,never) : Event<Int->Void>;
 }

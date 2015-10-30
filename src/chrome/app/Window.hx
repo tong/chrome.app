@@ -107,10 +107,10 @@ extern class Window {
 	static function current() : AppWindow;
 	static function getAll() : Array<AppWindow>;
 	static function get() : AppWindow;
-	static var onBoundsChanged(default,null) : Event<Void->Void>;
-	static var onClosed(default,null) : Event<Void->Void>;
-	static var onFullscreened(default,null) : Event<Void->Void>;
-	static var onMaximized(default,null) : Event<Void->Void>;
-	static var onMinimized(default,null) : Event<Void->Void>;
-	static var onRestored(default,null) : Event<Void->Void>;
+	static var onBoundsChanged(default,never) : Event<Void->Void>;
+	static var onClosed(default,never) : Event<Void->Void>;
+	static var onFullscreened(default,never) : Event<Void->Void>;
+	static var onMaximized(default,never) : Event<Void->Void>;
+	static var onMinimized(default,never) : Event<Void->Void>;
+	static var onRestored(default,never) : Event<Void->Void>;
 }

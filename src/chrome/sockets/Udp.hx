@@ -36,6 +36,6 @@ extern class Udp {
 	static function setMulticastLoopbackMode( socketId : Int, enabled : Bool, callback : Int->Void ) : Void;
 	static function getJoinedGroups( socketId : Int, callback : Array<String>->Void ) : Void;
 	static function setBroadcast( socketId : Int, enabled : Bool, callback : Int->Void ) : Void;
-	static var onReceive(default,null) : Event<{socketId:Int,data:ArrayBuffer,remoteAddress:String,remotePort:Int}->Void>;
-	static var onReceiveError(default,null) : Event<{socketId:Int,resultCode:Int}->Void>;
+	static var onReceive(default,never) : Event<{socketId:Int,data:ArrayBuffer,remoteAddress:String,remotePort:Int}->Void>;
+	static var onReceiveError(default,never) : Event<{socketId:Int,resultCode:Int}->Void>;
 }

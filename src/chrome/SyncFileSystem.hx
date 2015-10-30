@@ -46,6 +46,6 @@ extern class SyncFileSystem {
 	static function getFileStatus( fileEntry : Entry, callback : FileStatus->Void ) : Void;
 	static function getFileStatuses( fileEntries : Array<Dynamic>, callback : Array<{fileEntry:Entry,status:FileStatus,?error:String}>->Void ) : Void;
 	static function getServiceStatus( callback : ServiceStatus->Void ) : Void;
-	static var onServiceStatusChanged(default,null) : Event<{state:ServiceStatus,description:String}->Void>;
-	static var onFileStatusChanged(default,null) : Event<{fileEntry:FileEntry,status:FileStatus,?action:SyncAction,?direction:SyncDirection}->Void>;
+	static var onServiceStatusChanged(default,never) : Event<{state:ServiceStatus,description:String}->Void>;
+	static var onFileStatusChanged(default,never) : Event<{fileEntry:FileEntry,status:FileStatus,?action:SyncAction,?direction:SyncDirection}->Void>;
 }

@@ -113,8 +113,8 @@ extern class MediaGalleries {
 	static function removeGalleryWatch( galleryId : String ) : Void;
 	static function getAllGalleryWatch( callback : Array<String>->Void ) : Void;
 	static function removeAllGalleryWatch() : Void;
-	static var onGalleryChanged(default,null) : Event<{type:GalleryChangedType,galleryId:String}->Void>;
-	static var onScanProgress(default,null) : Event<{
+	static var onGalleryChanged(default,never) : Event<{type:GalleryChangedType,galleryId:String}->Void>;
+	static var onScanProgress(default,never) : Event<{
 			type : ScanProgressType,
 			?galleryCount : Int,
 			?audioCount : Int,

@@ -56,9 +56,9 @@ extern class BluetoothLowEnergy {
 	static function stopCharacteristicNotifications( characteristicId : String, ?callback : Void->Void ) : Void;
 	static function readDescriptorValue( descriptorId : String, callback : Descriptor->Void ) : Void;
 	static function writeDescriptorValue( descriptorId : String, value : ArrayBuffer, callback : Void->Void ) : Void;
-	static var onServiceAdded(default,null) : Event<Service->Void>;
-	static var onServiceChanged(default,null) : Event<Service->Void>;
-	static var onServiceRemoved(default,null) : Event<Service->Void>;
-	static var onCharacteristicValueChanged(default,null) : Event<Characteristic->Void>;
-	static var onDescriptorValueChanged(default,null) : Event<Descriptor->Void>;
+	static var onServiceAdded(default,never) : Event<Service->Void>;
+	static var onServiceChanged(default,never) : Event<Service->Void>;
+	static var onServiceRemoved(default,never) : Event<Service->Void>;
+	static var onCharacteristicValueChanged(default,never) : Event<Characteristic->Void>;
+	static var onDescriptorValueChanged(default,never) : Event<Descriptor->Void>;
 }

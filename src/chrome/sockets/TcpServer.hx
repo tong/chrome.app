@@ -27,6 +27,6 @@ extern class TcpServer {
 	static function close( socketId : Int, ?callback : Void->Void ) : Void;
 	static function getInfo( socketId : Int, callback : TcpSocketInfo->Void ) : Void;
 	static function getSockets( callback : Array<TcpSocketInfo>->Void ) : Void;
-	static var onAccept(default,null) : Event<{socketId:Int,clientSocketId:Int}->Void>;
-	static var onAcceptError(default,null) : Event<{socketId:Int,resultCode:Int}->Void>;
+	static var onAccept(default,never) : Event<{socketId:Int,clientSocketId:Int}->Void>;
+	static var onAcceptError(default,never) : Event<{socketId:Int,resultCode:Int}->Void>;
 }

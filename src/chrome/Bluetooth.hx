@@ -54,8 +54,8 @@ extern class Bluetooth {
 	static function getDevices( callback : Array<Device>->Void ) : Void;
 	static function startDiscovery( ?callback : Void->Void ) : Void;
 	static function stopDiscovery( ?callback : Void->Void ) : Void;
-	static var onAdapterStateChanged(default,null) : Event<AdapterState->Void>;
-	static var onDeviceAdded(default,null) : Event<Device->Void>;
-	static var onDeviceChanged(default,null) : Event<Device->Void>;
-	static var onDeviceRemoved(default,null) : Event<Device->Void>;
+	static var onAdapterStateChanged(default,never) : Event<AdapterState->Void>;
+	static var onDeviceAdded(default,never) : Event<Device->Void>;
+	static var onDeviceChanged(default,never) : Event<Device->Void>;
+	static var onDeviceRemoved(default,never) : Event<Device->Void>;
 }

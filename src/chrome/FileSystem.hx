@@ -35,5 +35,5 @@ extern class FileSystem {
 	static function retainEntry( entry : Entry ) : String;
 	static function requestFileSystem( options : {volumeId:String,?writable:Bool}, callback : ?FileSystem->Void ) : String;
 	static function getVolumeList( callback : Array<Volume>->Void ) : String;
-	static var onVolumeListChanged(default,null) : Event<Array<Volume>->Void>;
+	static var onVolumeListChanged(default,never) : Event<Array<Volume>->Void>;
 }

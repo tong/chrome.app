@@ -42,5 +42,5 @@ extern class Display {
 			?boundsOriginY : Int
 		},
 		?callback : Void->Void ) : Void;
-	static var onDisplayChanged(default,null) : Event<Void->Void>;
+	static var onDisplayChanged(default,never) : Event<Void->Void>;
 }

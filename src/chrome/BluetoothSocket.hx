@@ -50,8 +50,8 @@ extern class BluetoothSocket {
     static function send( socketId : Int, data : ArrayBuffer, ?callback : Int->Void ) : Void;
     static function getInfo( socketId : Int, callback : SocketInfo->Void ) : Void;
     static function getSockets( callback : Array<SocketInfo>->Void ) : Void;
-	static var onAccept(default,null) : Event<{socketId:Int,clientSocketId:Int}->Void>;
-	static var onAcceptError(default,null) : Event<{socketId:Int,errorMessage:String,error:AcceptErrorType}->Void>;
-	static var onReceive(default,null) : Event<{socketId:Int,data:ArrayBuffer}->Void>;
-	static var onReceiveError(default,null) : Event<{socketId:Int,errorMessage:String,error:ReceiveErrorType}->Void>;
+	static var onAccept(default,never) : Event<{socketId:Int,clientSocketId:Int}->Void>;
+	static var onAcceptError(default,never) : Event<{socketId:Int,errorMessage:String,error:AcceptErrorType}->Void>;
+	static var onReceive(default,never) : Event<{socketId:Int,data:ArrayBuffer}->Void>;
+	static var onReceiveError(default,never) : Event<{socketId:Int,errorMessage:String,error:ReceiveErrorType}->Void>;
 }

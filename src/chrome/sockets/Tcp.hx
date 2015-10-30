@@ -37,6 +37,6 @@ extern class Tcp {
 	static function close( socketId : Int, callback : Void->Void ) : Void;
 	static function getInfo( socketId : Int, callback : SocketInfo->Void ) : Void;
 	static function getSockets( callback : Array<SocketInfo>->Void ) : Void;
-	static var onReceive(default,null) : Event<{socketId:Int,data:ArrayBuffer}->Void>;
-	static var onReceiveError(default,null) : Event<{socketId:Int,resultCode:Int}->Void>;
+	static var onReceive(default,never) : Event<{socketId:Int,data:ArrayBuffer}->Void>;
+	static var onReceiveError(default,never) : Event<{socketId:Int,resultCode:Int}->Void>;
 }
