@@ -9,6 +9,6 @@
 	"contributors": ["tong"],
 	"classPath" : "src/",
 	"dependencies": {
-		"chrome-extension": "45.0.0"
+		"chrome-extension": "46.0.0"
 	}
 }
