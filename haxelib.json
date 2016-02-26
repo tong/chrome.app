@@ -2,7 +2,7 @@
 	"name": "chrome-app",
 	"url": "https://github.com/tong/chrome.app",
 	"license": "Public",
-	"tags": ["javascript","js","chrome","chromium","chrome-os","google","app","usb","serial","bluetooth","web","browser","socket","tcp","udp"],
+	"tags": ["extern","javascript","js","chrome","chromium","chrome-os","google","app","usb","serial","bluetooth","web","browser","socket","tcp","udp"],
 	"description": "Google chrome packaged apps type definitions",
 	"version": "46.0.0",
 	"releasenote": "See CHANGES",
