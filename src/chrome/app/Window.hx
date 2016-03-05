@@ -10,11 +10,7 @@ typedef ContentBounds = {
 	@:optional var height : Int;
 }
 
-typedef BoundsSpecification = {
-	@:optional var left : Int;
-	@:optional var top : Int;
-	@:optional var width : Int;
-	@:optional var height : Int;
+typedef BoundsSpecification = { > ContentBounds,
 	@:optional var minWidth : Int;
 	@:optional var minHeight : Int;
 	@:optional var maxWidth : Int;
@@ -36,8 +32,13 @@ typedef Bounds = {
 	function setMaximumSize(maxWidth:Int,maxHeight:Int) : Void;
 }
 
+@:enum abstract FrameType(String) from String to String {
+	var none = "none";
+	var chrome = "chrome";
+}
+
 typedef FrameOptions = {
-	@:optional var type : String;
+	@:optional var type : FrameType;
 	@:optional var color : String;
 	@:optional var activeColor : String;
 	@:optional var inactiveColor : String;
@@ -50,26 +51,14 @@ typedef FrameOptions = {
 	var minimized = "minimized";
 }
 
-@:enum abstract FrameType(String) from String to String {
-	var none = "none";
-	var chrome = "chrome";
-}
-
 typedef CreateWindowOptions = {
 	@:optional var id : String;
 	@:optional var innerBounds : BoundsSpecification;
 	@:optional var outerBounds : BoundsSpecification;
-	@:optional var minWidth : Int;
-	@:optional var minHeight : Int;
-	@:optional var maxWidth : Int;
-	@:optional var maxHeight : Int;
 	@:optional var frame : EitherType<FrameType,FrameOptions>;
-	@:optional var bounds : ContentBounds;
-	@:optional var transparentBackground : Bool;
 	@:optional var state : WindowState;
 	@:optional var hidden : Bool;
 	@:optional var resizable : Bool;
-	@:optional var singleton : Bool;
 	@:optional var alwaysOnTop : Bool;
 	@:optional var focused : Bool;
 	@:optional var visibleOnAllWorkspaces : Bool;
@@ -92,7 +81,6 @@ typedef AppWindow = {
 	function isAlwaysOnTop() : Bool;
 	function setAlwaysOnTop( alwaysOnTop : Bool ) : Void;
 	function setVisibleOnAllWorkspaces( alwaysVisible : Bool ) : Void;
-	@:require(chrome_dev)
 	function setInterceptAllKeys( wantAllKeys : Bool ) : Void;
 	var contentWindow : js.html.Window;
 	var id : Int;
