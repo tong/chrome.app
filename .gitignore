@@ -1,6 +1,6 @@
 _*
 doc/*
-examples/*
+examples/*/app.js
 test/*
 haxedoc.xml
 TODO*

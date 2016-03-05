@@ -1,0 +1,4 @@
+-js app.js
+-main App
+-lib chrome-app
+-dce full

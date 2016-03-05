@@ -1,0 +1,12 @@
+{
+	"name": "HaxeChromeApp",
+	"description": "Demo Application",
+	"version": "1.0.0",
+	"manifest_version": 2,
+	"app": {
+    	"background": {
+      		"scripts": ["background.js"]
+    	}
+  	},
+	"permissions": ["idle","storage","power","system.display","app.window.alwaysOnTop"]
+}
