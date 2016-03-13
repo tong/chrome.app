@@ -3,7 +3,7 @@
 
 Haxe/Javascript type definitions for [google chrome-apps](https://developer.chrome.com/apps/api_index).
 
-API version: 48
+API version: 49
 
 
 ### Install

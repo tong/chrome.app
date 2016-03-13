@@ -4,11 +4,11 @@
 	"license": "Public",
 	"tags": ["extern","javascript","js","chrome","chromium","chrome-os","google","app","usb","serial","bluetooth","web","browser","socket","tcp","udp"],
 	"description": "Google chrome packaged apps type definitions",
-	"version": "46.0.0",
+	"version": "49.0.0-rc.1",
 	"releasenote": "See CHANGES",
 	"contributors": ["tong"],
 	"classPath" : "src/",
 	"dependencies": {
-		"chrome-extension": "46.0.0"
+		"chrome-extension": "49.0.0-rc.1"
 	}
 }
