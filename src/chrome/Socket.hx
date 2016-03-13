@@ -11,6 +11,7 @@ typedef WriteInfo = {
     var bytesWritten : Int;
 }
 
+@:deprecated
 @:require(chrome_app)
 @:native("chrome.socket")
 extern class Socket {
