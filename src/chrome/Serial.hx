@@ -66,10 +66,27 @@ typedef ConnectionInfo = {
 	var system_error = "system_error";
 }
 
+typedef SerialDeviceInfo = {
+	path : String,
+	?vendorId : Int,
+	?productId : Int,
+	?displayName : String
+}
+
+typedef SerialReceive = {
+	connectionId : Int,
+	data : ArrayBuffer
+}
+
+typedef SerialReceiveError = {
+	connectionId : Int,
+	error : SerialError
+}
+
 @:require(chrome_app)
 @:native("chrome.serial")
 extern class Serial {
-	static function getDevices( callback : Array<{path:String,?vendorId:Int,?productId:Int,?displayName:String}>->Void ) : Void;
+	static function getDevices( callback : Array<SerialDeviceInfo>->Void ) : Void;
 	static function connect( path : String, ?options : ConnectionOptions, callback : ConnectionInfo->Void ) : Void;
 	static function update( connectionId : Int, options : ConnectionOptions, callback : Bool->Void ) : Void;
 	static function disconnect( connectionId : Int, callback : Bool->Void ) : Void;
@@ -82,6 +99,6 @@ extern class Serial {
 	static function setControlSignals( connectionId : Int, signals : {?dtr:Bool,?rts:Bool}, callback : Bool->Void ) : Void;
 	static function setBreak( connectionId : Int, callback : Bool->Void ) : Void;
 	static function clearBreak( connectionId : Int, callback : Bool->Void ) : Void;
-	static var onReceive(default,never) : Event<{connectionId:Int,data:ArrayBuffer}->Void>;
-	static var onReceiveError(default,never) : Event<{connectionId:Int,error:SerialError}->Void>;
+	static var onReceive(default,never) : Event<SerialReceive->Void>;
+	static var onReceiveError(default,never) : Event<SerialReceiveError->Void>;
 }

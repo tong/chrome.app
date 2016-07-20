@@ -1,5 +1,5 @@
 
-# Haxe Chrome App [![Build Status](https://travis-ci.org/tong/chrome.app.svg?branch=master)](https://travis-ci.org/tong/chrome.app)
+# Haxe Chrome App [![Build Status](https://travis-ci.org/tong/chrome.app.svg?branch=master)](https://travis-ci.org/tong/chrome.app) [![Haxelib Version](https://img.shields.io/github/tag/tong/chrome.app.svg?style=flat&label=haxelib)](http://lib.haxe.org/p/chrome.app.svg)
 
 Haxe/Javascript type definitions for [google chrome-apps](https://developer.chrome.com/apps/api_index).
 

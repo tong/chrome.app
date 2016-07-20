@@ -91,7 +91,7 @@ typedef AppWindow = {
 @:require(chrome_app)
 @:native("chrome.app.window")
 extern class Window {
-	static function create( url : String, ?options : CreateWindowOptions, ?f : AppWindow->Void ) : Void;
+	static function create( url : String, ?options : CreateWindowOptions, ?callback : AppWindow->Void ) : Void;
 	static function current() : AppWindow;
 	static function getAll() : Array<AppWindow>;
 	static function get() : AppWindow;
