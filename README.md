@@ -3,20 +3,22 @@
 
 Haxe/Javascript type definitions for [google chrome-apps](https://developer.chrome.com/apps/api_index).
 
-API version: 52
+API version: 54
 
 
 ### Install
-```
+```sh
 $ haxelib install chrome-app
 ```
 
 For chrome-extension types see: https://github.com/tong/chrome.extension
 
+
 ### Usage
-```
+```sh
 -lib chrome_app
 ```
+
 
 #### Haxe Defines
 
