@@ -10,4 +10,5 @@ haxe:
 
 script:
   - haxelib git chrome-extension https://github.com/tong/chrome.extension
+  - haxelib git chrome-app https://github.com/tong/chrome.app
   - haxe haxedoc.hxml
