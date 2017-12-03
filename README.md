@@ -5,6 +5,11 @@ Haxe/Javascript type definitions for [google chrome-apps](https://developer.chro
 
 API version: 62
 
+---
+
+> __Important__: Chrome will be removing support for Chrome Apps on Windows, Mac, and Linux. Chrome OS will continue to support Chrome Apps. Additionally, Chrome and the Web Store will continue to support extensions on all platforms. Read the [announcement](http://blog.chromium.org/2016/08/from-chrome-apps-to-web.html) and learn more about [migrating](https://developers.chrome.com/apps/migration) your app.
+
+---
 
 ### Install
 ```sh
