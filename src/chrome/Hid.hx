@@ -7,6 +7,8 @@ typedef HidDeviceInfo = {
 	var deviceId : Int;
 	var vendorId : Int;
 	var productId : Int;
+	var productName : String;
+	var serialNumber : String;
 	var collections : Array<{usagePage:Int,usage:Int,reportIds:Array<Int>}>;
 	var maxInputReportSize : Int;
 	var maxOutputReportSize : Int;
@@ -24,7 +26,14 @@ typedef DeviceFilter = {
 @:require(chrome_app)
 @:native("chrome.hid")
 extern class Hid {
-	static function getDevices( options : {?vendorId:Int,?productId:Int,?filters:Array<DeviceFilter>}, callback : Array<HidDeviceInfo>->Void ) : Void;
+	static function getDevices(
+		options : {
+			@:deprecated @:optional var vendorId:Int;
+			@:deprecated @:optional var productId:Int;
+			@:optional var filters:Array<DeviceFilter>;
+		},
+		callback : Array<HidDeviceInfo>->Void
+	) : Void;
 	static function connect( deviceId : Int, callback : {connectionId:Int}->Void ) : Void;
 	static function disconnect( deviceId : Int, callback : Void->Void ) : Void;
 	static function receive( connectionId : Int, callback : Int->ArrayBuffer->Void ) : Void;
